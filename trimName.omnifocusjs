@@ -1,0 +1,27 @@
+/* global PlugIn */
+/* eslint spaced-comment: ["error", "always", { "exceptions": ["{"] }] */
+/*{
+"type": "action",
+"targets": ["omnifocus"],
+"author": "Kaitlin Salzke",
+"identifier": "com.KaitlinSalzke.trimName",
+"version": "1.0.0",
+"description": "Trim Name",
+"label": "Trim Name",
+"shortLabel": "Trim Name"
+}*/
+(() => {
+  const action = new PlugIn.Action(function (selection, sender) {
+    const tasks = selection.tasks
+
+    tasks.forEach(function (task) {
+      task.name = task.name.trim()
+    })
+  })
+
+  action.validate = function (selection, sender) {
+    return selection.tasks.length > 0
+  }
+
+  return action
+})()
